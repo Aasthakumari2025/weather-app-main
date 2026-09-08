@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+    --color-neutral-0 :  hsl(0, 0%, 100%);
+    --color-neutral-200 : hsl(250, 6%, 84%);
+     --color-neutral-300 : hsl(240, 6%, 70%);
+     --color-blue-700 :  hsl(248, 70%, 36%);
+--color-blue-500 :  hsl(233, 67%, 56%)
+}
