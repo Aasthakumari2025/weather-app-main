@@ -51,8 +51,8 @@ const WeatherPage = () => {
 
 
   return (
-    <section className="xl:w-[80%] lg:w-[90%] w-full lg:px-0 px-4 mx-auto">
-      <h1 className="text-3xl md:text-4xl font-bold text-white text-center">How's the sky looking today?</h1>
+    <main className="xl:w-[80%] lg:w-[90%] w-full lg:px-0 px-4 mx-auto">
+      <h1 className="text-3xl md:text-5xl font-bold text-white text-center">How&apos;s the sky looking today?</h1>
       <form onSubmit={(e) => e.preventDefault()} className="flex items-start gap-3 lg:max-w-[45%] max-w-[80%] w-full flex-col md:flex-row  mx-auto lg:mt-20 mt-8 mb-8">
         <div className='relative w-full'>
           <label className="flex items-center gap-3 flex-1 px-3 py-2 border hover:border-neutral-200 focus:border-neutral-200 rounded-lg bg-gray-700 border-transparent">
@@ -84,7 +84,7 @@ const WeatherPage = () => {
       </div>
 
 
-    </section>
+    </main>
   )
 }
 

@@ -30,7 +30,7 @@ const DailyForcast = () => {
             (
                 <div className='grid xl:grid-cols-7 md:grid-cols-4 grid-cols-3 mt-3 gap-4'>
                     {Array.from({length:7}).map((_,index) => (
-                        <div className='relative min-w-20 h-40 text-lg text-white flex items-center justify-center rounded-2xl bg-gray-700'>
+                        <div key={index} className='relative min-w-20 h-40 text-lg text-white flex items-center justify-center rounded-2xl bg-gray-700'>
                           -
                         </div>
                     ))}

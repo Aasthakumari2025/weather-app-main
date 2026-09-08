@@ -114,8 +114,8 @@ const HourlyForcast = () => {
             })
         ) : (
           <div className='flex w-full flex-col space-y-4 mt-4 mb-2'>
-            {Array.from({length : 8}).map((_,index) => (
-              <div className='w-full bg-gray-600 rounded-2xl h-15  '></div>
+            {Array.from({length : 8}).map((index) => (
+              <div key={index} className='w-full bg-gray-600 rounded-2xl h-15  '></div>
             ))}
           </div>
         )
