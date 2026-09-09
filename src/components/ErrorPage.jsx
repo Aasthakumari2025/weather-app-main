@@ -4,11 +4,11 @@ import {WeatherContext} from './usecontext/WeatherContext'
 
 
 const ErrorPage = () => {
-    const {error} = useContext(WeatherContext);
+    const {apierror} = useContext(WeatherContext);
 
   
   return (
-    <div className={`text-white w-full items-center space-y-4  text-center ${error ? "block " : "hidden"}`}> 
+    <div className={`text-white w-full items-center space-y-4  text-center ${apierror ? "block " : "hidden"}`}> 
      <img src='/assets/icon-error.svg' alt="error" className="w-8 inline h-8"/>
      <h1 className="md:text-5xl ext-3xl font-bold  text-white">Something went wrong</h1>
      <p className="text-md text-neutral-300 max-w-96 mx-auto text-center">We could&apos;n connect to the server(API error).Please try again in a few moments</p>

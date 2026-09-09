@@ -6,13 +6,14 @@ import WeatherCard from './WeatherCard'
 import HourlyForcast from './HourlyForcast'
 
 const WeatherPage = () => {
-  const { search, setsearch, seterror,temp,ppt,speed, setplaces, places,  setweatherData } = useContext(WeatherContext);
+  const { search, setsearch, setapierror,setnotfound,notfound,temp,ppt,speed, setplaces, places,  setweatherData } = useContext(WeatherContext);
   const [open, setopen] = useState(false)
 
   useEffect(() => {
     if (search.length <= 1) {
       setplaces([]);
-      seterror(null);
+      setnotfound(null);
+      setapierror(null);
       return;
     }
 
@@ -22,9 +23,12 @@ const WeatherPage = () => {
 
         if (!data.results?.length) {
           setplaces([]);
-          seterror("City not found");
+         setnotfound(true);
+         setapierror(false)
           return;
         }
+
+        setnotfound(false);
 
         const filterData = data.results.filter((place,index,self) => 
           index === self.findIndex((p) => p.name.toLowerCase() === place.name.toLowerCase())
@@ -36,7 +40,7 @@ const WeatherPage = () => {
         const weatherdata = await fetchWeatherData(place.latitude, place.longitude ,temp,ppt,speed);
         setweatherData(weatherdata);
       } catch (err) {
-        seterror(err.message);
+        setapierror(err.message);
       }
     }, 500); // debounce 500ms
 
@@ -60,16 +64,24 @@ const WeatherPage = () => {
             <input value={search} onChange={(e) => { setsearch(e.target.value), setopen(true) }} type="search" placeholder="Search for a place...." className="outline-none w-full text-md font-medium text-neutral-200" />
           </label>
 
-          {open && places.length > 0 && (
+          {open && notfound && (
+    <div className="absolute z-50 w-full mt-2 bg-gray-600 rounded-2xl p-4 shadow-lg">
+      <p className="text-white">
+        No search result found!
+      </p>
+    </div>
+  )}
+
+          {open && places.length > 0  && (
             <div className="absolute  z-50 w-full mt-2 bg-gray-600 rounded-2xl p-2 shadow-lg">
               {places.slice(0, 4).map((place) => (
-                <p
+                <button type='button'
                   key={place.id}
                   onClick={() => handleSelect(place)}
                   className="px-4 py-2 text-white rounded-2xl hover:bg-gray-500 cursor-pointer"
                 >
                   {place.name}
-                </p>
+                </button>
               ))}
             </div>
           )}

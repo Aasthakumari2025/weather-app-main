@@ -24,7 +24,7 @@ const App = () => {
 
 
 function WeatherContent() {
-  const { error } = useContext(WeatherContext);
+  const { apierror } = useContext(WeatherContext);
 
 
   return (
@@ -32,7 +32,7 @@ function WeatherContent() {
     <div className="w-full min-h-screen pb-4 bg-blue-700">
 
       <Navbar />
-      { error ? <ErrorPage /> : <WeatherPage/> }
+      { apierror ? <ErrorPage /> : <WeatherPage/> }
     </div>
   )
 }

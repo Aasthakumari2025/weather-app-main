@@ -70,7 +70,7 @@ const HourlyForcast = () => {
           openSelect &&
           <div className='absolute right-2 top-15 w-50 z-30 rounded-lg p-2 border border-gray-500 bg-gray-700'>
             {days.map((day, index) => (
-              <p onClick={() => { setselectDay(day), setopenSelect(false) }} key={index} className='hover:bg-gray-600 w-full p-2 rounded-lg text-white text-sm'>{day}</p>
+              <button type='button' onClick={() => { setselectDay(day), setopenSelect(false) }} key={index} className='hover:bg-gray-600 w-full p-2 rounded-lg text-white text-sm'>{day}</button>
             ))}
           </div>
 
@@ -114,7 +114,7 @@ const HourlyForcast = () => {
             })
         ) : (
           <div className='flex w-full flex-col space-y-4 mt-4 mb-2'>
-            {Array.from({length : 8}).map((index) => (
+            {Array.from({length : 8}).map((_,index) => (
               <div key={index} className='w-full bg-gray-600 rounded-2xl h-15  '></div>
             ))}
           </div>

@@ -14,13 +14,17 @@ export async function fetchDataByCity(city) {
         return data;
 }
 
-export async function fetchWeatherData(latitude, longitude,temp,ppt,speed) {
-    const response = await fetch(`${WEATHER_API_URL}forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,precipitation,relative_humidity_2m,apparent_temperature,wind_speed_10m&wind_speed_unit=mph&precipitation_unit=inch&temperature_unit=${temp}&temperature_2m_unit=${temp}&wind_speed_unit=${speed}&precipitation_unit=${ppt}&hourly=temperature_2m,weather_code&start_date=2026-09-06&end_date=2026-09-15&timezone=auto&daily=temperature_2m_max,temperature_2m_min,weather_code`);
-        if(!response.ok){
-            throw new Error("failed to fetch weather data");
-        }
-        const Weatherdata = await response.json();
-        console.log(Weatherdata)
-        return Weatherdata;
 
+export async function fetchWeatherData(latitude, longitude, temp, ppt, speed) {
+    const response = await fetch(
+        `${WEATHER_API_URL}forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,precipitation,relative_humidity_2m,apparent_temperature,wind_speed_10m&temperature_unit=${temp}&wind_speed_unit=${speed}&precipitation_unit=${ppt}&hourly=temperature_2m,weather_code&forecast_days=7&timezone=auto&daily=temperature_2m_max,temperature_2m_min,weather_code`
+    );
+
+    if (!response.ok) {
+        throw new Error("failed to fetch weather data");
+    }
+
+    const Weatherdata = await response.json();
+    console.log(Weatherdata);
+    return Weatherdata;
 }
