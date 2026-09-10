@@ -1,44 +1,40 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext,  useState } from 'react'
 import { WeatherContext } from './usecontext/WeatherContext'
 
 const HourlyForcast = () => {
   const { weatherData, getWeatherIcon } = useContext(WeatherContext);
-  const [selectDay, setselectDay] = useState("")
-  const [openSelect, setopenSelect] = useState(false)
-
-
-
-  const hourlyWeather = weatherData?.hourly;
 
   const currentTime = new Date();
-  const currentHour = currentTime.getHours();
+const currentHour = currentTime.getHours();
 
-  const today = currentTime.toLocaleDateString("en-US", {
+const [selectDay, setselectDay] = useState(
+  currentTime.toLocaleDateString("en-US", {
     weekday: "long"
-  });
+  })
+);
 
-  const startIndex = hourlyWeather?.time?.findIndex((time) => {
+const [openSelect, setopenSelect] = useState(false);
 
-    const timeDate = new Date(time);
+const hourlyWeather = weatherData?.hourly;
 
-    if (selectDay === today) {
-      return timeDate.getHours() === currentHour;
-    }
+const today = currentTime.toLocaleDateString("en-US", {
+  weekday: "long"
+});
 
-    return timeDate.toLocaleDateString("en-US", {
-      weekday: "long"
-    }) === selectDay;
+const startIndex = hourlyWeather?.time?.findIndex((time) => {
+  const timeDate = new Date(time);
 
-  });
+  if (selectDay === today) {
+    return timeDate.getHours() === currentHour;
+  }
+
+  return timeDate.toLocaleDateString("en-US", {
+    weekday: "long"
+  }) === selectDay;
+});
 
 
-  useEffect(() => {
-    const day = currentTime.toLocaleDateString("en-US", {
-      weekday: "long"
-    });
-    setselectDay(day)
-  }, []
-  )
+  
 
   const days = [
     "Monday",
@@ -63,9 +59,9 @@ const HourlyForcast = () => {
           Hourly Forecast
         </h2>
 
-        <div onClick={() => setopenSelect(!openSelect)} className='md:text-lg text-sm rounded-lg text-white bg-gray-500 items-center flex xl:p-2 p-1 gap-2'>{selectDay}
+        <button type='button' onClick={() => setopenSelect(!openSelect)} className='md:text-lg text-sm rounded-lg text-white bg-gray-500 items-center flex xl:p-2 p-1 gap-2'>{selectDay}
           <img src='/assets/icon-dropdown.svg' alt='icon-dropdown' className='lg:w-3 w-2 lg:h-3 h-2' />
-        </div>
+        </button>
         {
           openSelect &&
           <div className='absolute right-2 top-15 w-50 z-30 rounded-lg p-2 border border-gray-500 bg-gray-700'>
